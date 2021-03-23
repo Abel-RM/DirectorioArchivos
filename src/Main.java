@@ -51,17 +51,3 @@ public class Main {
         return ruta;
     }
 }
-
-
-/*
-for (File listOfFile : listOfFiles) {
-
-            if (listOfFile.isFile()) {
-                files = listOfFile.getName();
-                if (files.toLowerCase().contains(palabra))
-                    rutas.insert(files+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+listOfFile.getPath());
-
-            }else
-                buscarArchivos(listOfFile.getPath(), palabra);
-        }
-*/

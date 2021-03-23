@@ -5,12 +5,12 @@ import java.util.Observer;
 
 @SuppressWarnings("ALL")
 public class Directorio implements Observer {
-    ArrayList<String> _final = new ArrayList<>();
+    ArrayList<String> nombres = new ArrayList<>();
+    ArrayList<String> nombre_rutas = new ArrayList<>();
     Line pull;
     String palabra;
 
     public Directorio(Line pull, String p ) {
-        this._final = _final;
         palabra = p;
         this.pull = pull;
     }
@@ -22,8 +22,11 @@ public class Directorio implements Observer {
         File[] listOfFiles = file.listFiles();
         if (file.isFile()) {
             files = file.getName();
-            if (files.toLowerCase().contains(palabra))
-                _final.add(files+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+file.getPath());
+            if (files.toLowerCase().contains(palabra)){
+                nombres.add(files);
+                nombre_rutas.add(file.getPath());
+            }
+
 
         }else{
             for (File f : listOfFiles){
@@ -35,10 +38,25 @@ public class Directorio implements Observer {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         String temp = "";
-        for (String g: _final){
-            temp += g+"\n";
+        int mayor  = 0;
+        for (String g: nombres){
+            if (g.length() > mayor)
+                mayor = g.length();
+        }
+
+        String n_nombre = "";
+        ArrayList<String> lista_nombres = new ArrayList<>();
+        for (String g: nombres){
+            n_nombre = g;
+            for(int i=0; i < (mayor-g.length()); i++){
+                n_nombre += " ";
+            }
+            lista_nombres.add(n_nombre);
+        }
+        for(int i=0; i < lista_nombres.size(); i++){
+            temp += lista_nombres.get(i)+"\t"+nombre_rutas.get(i)+"\n";
         }
 
         return temp;
