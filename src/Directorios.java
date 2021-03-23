@@ -15,20 +15,20 @@ public class Directorios {
         }
     }
     private static void buscarArchivos(String path, String palabra){
-        String files;
+
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
+        Line pull = new Line();
+        Directorio directorio = new Directorio(pull, palabra);
 
-        for (File listOfFile : listOfFiles) {
+        pull.addObserver(directorio);
+        if (listOfFiles != null)
+            for (File f : listOfFiles){
+                pull.insert(f.toString());
+            }
 
-            if (listOfFile.isFile()) {
-                files = listOfFile.getName();
-                if (files.toLowerCase().contains(palabra))
-                    rutas.insert(files+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+listOfFile.getPath());
+        System.out.println(directorio);
 
-            }else
-                buscarArchivos(listOfFile.getPath(), palabra);
-        }
     }
 
     private static String escogerArchivo(String titulo){
@@ -51,3 +51,17 @@ public class Directorios {
         return ruta;
     }
 }
+
+
+/*
+for (File listOfFile : listOfFiles) {
+
+            if (listOfFile.isFile()) {
+                files = listOfFile.getName();
+                if (files.toLowerCase().contains(palabra))
+                    rutas.insert(files+"\t\t\t\t\t\t\t\t\t\t\t\t\t"+listOfFile.getPath());
+
+            }else
+                buscarArchivos(listOfFile.getPath(), palabra);
+        }
+*/
