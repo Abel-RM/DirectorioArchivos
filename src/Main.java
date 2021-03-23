@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.io.File;
 
-public class Directorios {
+public class Main {
     static Line rutas = new Line();
 
     public static void main(String[] args) {
